@@ -1,11 +1,17 @@
+import json
+
+
 class Song(object):
     def __init__(self, artist, name, album, cover, url):
+        super(Song, self).__init__()
         self.artist = artist
         self.name = name
         self.album = album
         self.cover = cover
         self.url = url
 
+    def to_json(self):
+        return json.dumps(self.__dict__)
 
 songs_map = {
     "city_street_urban": [Song("Bomfunk MC", "Freestyler", "-", "-",

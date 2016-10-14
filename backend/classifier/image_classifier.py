@@ -6,7 +6,7 @@ import sys
 import os
 from PIL import Image
 import caffe
-import CategoryTranslator as ct
+import category_translator as ct
 
 class ImageClassifier:
     def __init__(self): #, network_config_file=None, weights=None):
@@ -16,6 +16,7 @@ class ImageClassifier:
         model_def = '/home/caffeNutzer/data/deploy_alexnet_places365.prototxt'
         model_weights = '/home/caffeNutzer/data/alexnet_places365.caffemodel'
         meanFile = '/home/caffeNutzer/data/places365CNN_mean.binaryproto'
+
 
         # if weights is not None:
         #     self.net = caffe.Net(network_config_file, weights, caffe.TEST)

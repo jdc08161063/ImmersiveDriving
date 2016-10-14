@@ -1,15 +1,15 @@
-var Song = function(artist, name, album, albumCover, url) {
+var Song = function(artist, name, album, cover, url) {
   this.artist = artist;
   this.name = name;
   this.album = album;
-  this.albumCover = albumCover;
+  this.cover = cover;
   this.playing = false;
   this.url = url;
   this.audio = null;
 };
 
 Song.prototype.toHTML = function (index) {
-  return '<li class="collection-item avatar"><img src="' + this.albumCover + '" alt="" class="circle"><span class="title">' + this.name + '</span><p>' + this.artist + '<br>' + this.album + '</p><a href="#!" class="secondary-content"><i class="material-icons" onClick="play(' + index + ')">' + (this.playing ? 'pause' : 'play_arrow') + '</i></a></li>';
+  return '<li class="collection-item avatar"><img src="' + this.cover + '" alt="" class="circle"><span class="title">' + this.name + '</span><p>' + this.artist + '<br>' + this.album + '</p><a href="#!" class="secondary-content"><i class="material-icons" onClick="play(' + index + ')">' + (this.playing ? 'pause' : 'play_arrow') + '</i></a></li>';
 };
 
 Song.prototype.play = function () {
