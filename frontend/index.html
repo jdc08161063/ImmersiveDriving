@@ -8,6 +8,7 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/song.js"></script>
     <script type="text/javascript" src="js/songlist.js"></script>
+    <script type="text/javascript" src="js/request.js"></script>
     <script type="text/javascript" src="js/application.js"></script>
     <title>Audi Smart Music Hub</title>
   </head>
@@ -16,20 +17,16 @@
       <div class="col s6">
         <div class="container">
           <h2>Landscape</h2>
-          <img class="responsive-img" src="https://lh3.googleusercontent.com/-XIBDmNIb4xo/AAAAAAAAAAI/AAAAAAAAAEk/IIRqdHKj_8M/s0-c-k-no-ns/photo.jpg">
+          <img id="image" class="responsive-img" src="https://lh3.googleusercontent.com/-XIBDmNIb4xo/AAAAAAAAAAI/AAAAAAAAAEk/IIRqdHKj_8M/s0-c-k-no-ns/photo.jpg">
+          <input type='file' />
         </div>
       </div>
       <div class="col s6">
         <div class="container">
           <h2>Songs</h2>
-          <div id="songlist">
-
-          </div>
+          <div id="songlist"></div>
         </div>
       </div>
     </div>
-
-<!-- TODO: ADD Media Controls -->
-
   </body>
 </html>
