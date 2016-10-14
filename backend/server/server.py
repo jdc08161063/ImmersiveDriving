@@ -3,57 +3,48 @@ from backend.classifier.image_classifier import ImageClassifier
 from flask import json
 from flask import Response
 from flask import Flask
+
 app = Flask(__name__)
 
 
-def labelimage(imagefilename):
+def song_list_for_image(image_name):
     classifier = ImageClassifier()
-    label, err = classifier.classify_image(str(os.path.realpath('..'))+'/classifier/demo_dataset/resized/'+imagefilename)
+    song_list, err = classifier.classify_image(
+        str(os.path.realpath('..')) + '/classifier/demo_dataset/resized/' + image_name)
     if err is not None:
         return None
+    return {image_name: song_list}
 
-    return label
 
-
-def getimagenameslist():
-    imagenameslist = []
-    image_dir = str(os.path.realpath('..'))+'/classifier/demo_dataset/resized'
+def get_image_list():
+    image_list = []
+    image_dir = str(os.path.realpath('..')) + '/classifier/demo_dataset/resized'
     for fileName in os.listdir(image_dir):
         if fileName.endswith('.jpg') or fileName.endswith('.png'):
             print fileName
-            imagenameslist.append(fileName)
-
-    return imagenameslist
+            image_list.append(fileName)
+    return image_list
 
 
 @app.route("/labelslist")
-def getlabelslist():
-    imagenameslist = getimagenameslist()
-    labelsmap = map(labelimage, imagenameslist)
-    result = []
-    for index, member in enumerate(imagenameslist):
-        pair = {
-            imagenameslist[index] : labelsmap[index]
-        }
-        result.append(pair)
+def get_all_songs():
+    image_list = get_image_list()
+    songs_map = map(song_list_for_image, image_list)
 
-    js = json.dumps(result)
+    js = json.dumps(songs_map)
     resp = Response(js, status=200, mimetype='application/json')
     return resp
 
 
-@app.route("/<string:imagefilename>")
-def getlabel(imagefilename):
-    label = labelimage(imagefilename)
-    if label is None:
-        return Response(status=400)
-
-    pair = {
-        imagefilename : label
-    }
-    js = json.dumps(pair)
+@app.route("/<image_name>")
+def get_song_for_image(image_name):
+    songs_map = song_list_for_image(image_name)
+    if songs_map is None:
+        return Response(status=500)
+    js = json.dumps(songs_map)
     resp = Response(js, status=200, mimetype='application/json')
     return resp
+
 
 if __name__ == "__main__":
     app.run()

@@ -16,8 +16,8 @@ function setSongs(songs) {
   updateSongsUI();
 }
 
-function uploadImage(image) {
-  var request = new Request(image);
+function uploadImage(file) {
+  var request = new Request(file.name);
   request.perform(function(songs) {
     _songs = songs;
     updateSongsUI();
