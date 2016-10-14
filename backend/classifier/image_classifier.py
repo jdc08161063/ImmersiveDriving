@@ -6,7 +6,7 @@ import sys
 import os
 from PIL import Image
 import caffe
-import category_translator as ct
+import CategoryTranslator as ct
 
 class ImageClassifier:
     def __init__(self): #, network_config_file=None, weights=None):
@@ -15,6 +15,7 @@ class ImageClassifier:
         caffe.set_mode_cpu()
         model_def = '/home/caffeNutzer/data/deploy_alexnet_places365.prototxt'
         model_weights = '/home/caffeNutzer/data/alexnet_places365.caffemodel'
+        meanFile = '/home/caffeNutzer/data/places365CNN_mean.binaryproto'
 
         # if weights is not None:
         #     self.net = caffe.Net(network_config_file, weights, caffe.TEST)
@@ -25,24 +26,19 @@ class ImageClassifier:
                                              places_categories_file="/home/caffeNutzer/data/config/categories_places365.txt",
                                              translation_file="/home/caffeNutzer/data/config/categories_translation.txt")
 
+        blob = caffe.proto.caffe_pb2.BlobProto()
+        data = open(meanFile, 'rb').read()
+        blob.ParseFromString(data)
+        arr = np.array(caffe.io.blobproto_to_array(blob))
+        out = arr[0].mean(1).mean(1)
+
         self.transformer = caffe.io.Transformer({'data': self.net.blobs['data'].data.shape})
+        self.transformer.set_mean('data', out)
         self.transformer.set_transpose('data', (2,0,1))
         self.transformer.set_raw_scale('data', 255)
         self.transformer.set_channel_swap('data', (2,1,0))
 
     def classify_image(self, imagePath):
-        # im, err = self.load_image(imageName)
-        # if err is not None:
-        #     raise ValueError
-        # x, y, _ = im.shape
-        # im = np.reshape(im, (1, 3, x, y))
-        # self.net.blobs['data'].data[...] = im
-
-        # probs = self.net.forward()['prob']
-        # index_max_prob = np.argmax(probs)
-
-        
-
         #image = caffe.io.load_image('/home/caffeNutzer/data/images/sea_coast.jpg')
         image = caffe.io.load_image(imagePath)
         transformed_image = self.transformer.preprocess('data', image)
@@ -64,4 +60,4 @@ if __name__ == "__main__":
     sys.path.append('home/caffeNutzer/caffe/python')
     import caffe
     ic = ImageClassifier()   
-    print 'ourlabel', ic.classify_image('/home/caffeNutzer/data/images/sea_coast.jpg')
+    print 'ourlabel', ic.classify_image('/home/caffeNutzer/data/images/valley.jpg')
