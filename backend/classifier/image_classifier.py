@@ -6,7 +6,7 @@ import sys
 import os
 from PIL import Image
 import caffe
-import CategoryTranslator as ct
+import category_translator as ct
 
 class ImageClassifier:
     def __init__(self): #, network_config_file=None, weights=None):
