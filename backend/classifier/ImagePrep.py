@@ -9,7 +9,7 @@ class ImagePrep():
 
     def _resize_to(self, filename=None, x=224, y=224):
         im = Image.open("./"+self.images_folder+"/"+filename)
-        im.resize((x, y), Image.ANTIALIAS)
+        im = im.resize((x, y), Image.ANTIALIAS)
         outname = filename[:-8]
         im.save("./"+self.images_folder+"/resized/"+"{0}.jpg".format(outname))
 
