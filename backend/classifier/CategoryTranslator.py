@@ -1,7 +1,7 @@
 
 """ Convert a Places365 category to a broader one. Input categories are stored in categories_places365.txt file.
 The output categories are stored in categories_ournet6.txt """
-class ClassUnifier():
+class CategoryTranslator():
 
     def __init__(self, ournet_categories_file=None, places_categories_file=None, translation_file=None):
         self.translation_file = translation_file
@@ -36,7 +36,7 @@ class ClassUnifier():
 
 
 if __name__ == "__main__":
-    cu = ClassUnifier(ournet_categories_file="./config/categories_ournet6.txt",
+    cu = CategoryTranslator(ournet_categories_file="./config/categories_ournet6.txt",
                       places_categories_file="./config/categories_places365.txt",
                       translation_file="./config/categories_translation.txt")
 
