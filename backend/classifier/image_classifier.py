@@ -4,9 +4,12 @@ import caffe
 import CategoryTranslator as ct
 
 class ImageClassifier:
-    def __init__(self, network_config_file=None):
+    def __init__(self, network_config_file=None, weights=None):
         caffe.set_mode_cpu()
-        self.net = caffe.Net(network_config_file, caffe.TEST)
+        if weights is not None:
+            self.net = caffe.Net(network_config_file, weights, caffe.TEST)
+        else:
+            self.net = caffe.Net(network_config_file, caffe.TEST)
         self.translator = ct.CategoryTranslator(ournet_categories_file="./config/categories_ournet6.txt",
                                              places_categories_file="./config/categories_places365.txt",
                                              translation_file="./config/categories_translation.txt")
