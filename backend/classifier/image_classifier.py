@@ -8,11 +8,11 @@ class ImageClassifier:
         pass
 
     def classify_image(self, imageName):
-        im, err = self.load_image(self, imageName)
-        if err != None:
-            pass
-        pass
+        im, err = self.load_image(imageName)
+        if err is not None:
+            raise ValueError
+        return "label", None
 
     def load_image(self, imageName):
         im = np.array(Image.open(imageName))
-        pass
+        return im, None
