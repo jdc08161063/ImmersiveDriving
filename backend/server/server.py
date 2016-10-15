@@ -7,7 +7,7 @@ from flask import Flask
 app = Flask(__name__)
 classifier = None
 
-current_image_idx = 0
+current_image_idx = 3
 
 current_label = None
 

@@ -1,5 +1,5 @@
 /c/city_street_urban 0
-/d/desert_field_void 1
+/d/field_plains 1
 /f/forest_mountain_nature 2
 /n/night_tunnel_dark 3
 /s/sea_coast_water 4
