@@ -49,6 +49,7 @@ class FaceClassifier:
 
         label = self.translator.othernet_to_ournet(index_max_prob)
         self.action = label
+        print("facenetlabel", label)
         return label, index_max_prob
 
     def load_image(self, imageName):
