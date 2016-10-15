@@ -1,4 +1,4 @@
-var url = "http://localhost:5000";
+var url = "http://51.4.231.253:5000";
 
 var Request = function () {
 };

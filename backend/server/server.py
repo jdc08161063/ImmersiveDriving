@@ -59,4 +59,4 @@ def get_next_image():
 
 if __name__ == "__main__":
     classifier = ImageClassifier()
-    app.run()
+    app.run(host='0.0.0.0')
