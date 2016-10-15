@@ -3,11 +3,12 @@
 The output categories are stored in categories_ournet6.txt """
 class CategoryTranslator():
 
-    def __init__(self, ournet_categories_file=None, places_categories_file=None, translation_file=None):
-        self.translation_file = translation_file
+    def __init__(self, ournet_categories_file=None,
+                 othernet_categories_file=None,
+                 translation_othernet_file=None):
         self.ournet_categories = self._load_classes_from_file(ournet_categories_file)
-        self.places_categories = self._load_classes_from_file(places_categories_file)
-        self.translated_categories = self._convert_categories()
+        self.places_categories = self._load_classes_from_file(othernet_categories_file)
+        self.translated_categories = self._convert_categories(translation_othernet_file)
 
     def _load_classes_from_file(self, filename=None):
         categories = dict()
@@ -19,9 +20,9 @@ class CategoryTranslator():
                     categories[int(num_identifier)] = catname[3:]
         return categories
 
-    def _convert_categories(self):
+    def _convert_categories(self, translation_file=None):
         translation_categories = dict()
-        with open(self.translation_file) as f:
+        with open(translation_file) as f:
             content = f.readlines()
             for cl in content:
                 _, places_id, ournet_id = cl.split()
@@ -29,15 +30,11 @@ class CategoryTranslator():
         return translation_categories
 
     """ converts the class.
-    Input: String class form the places365 network classes
-    Output: String from the OurNet6 classes """
-    def places365_to_ournet6(self, cat_id=0):
+    Input: String class form the places365/faces network classes
+    Output: String from the OurNet6/ourfaces classes """
+    def othernet_to_ournet(self, cat_id=0):
         return self.ournet_categories[self.translated_categories[cat_id]]
 
 
-if __name__ == "__main__":
-    cu = CategoryTranslator(ournet_categories_file="./config/categories_ournet6.txt",
-                      places_categories_file="./config/categories_places365.txt",
-                      translation_file="./config/categories_translation.txt")
 
 

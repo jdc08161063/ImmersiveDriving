@@ -1,0 +1,7 @@
+/c/angry 0 1
+/d/disgust 1 1
+/f/fear 2 1
+/h/happy 3 0
+/n/neutral 4 0
+/s/sad 5 1
+/s/surprise 6 0

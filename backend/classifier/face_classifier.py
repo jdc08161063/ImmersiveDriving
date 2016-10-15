@@ -6,9 +6,9 @@ import sys
 import os
 from PIL import Image
 import caffe
-#import CategoryTranslator as ct
+import category_translator as ct
 
-class ImageClassifier:
+class FaceClassifier:
     def __init__(self): #, network_config_file=None, weights=None):
         #sys.path.append('home/caffeNutzer/caffe/python')
 
@@ -16,16 +16,13 @@ class ImageClassifier:
         model_def = '/home/caffeNutzer/face/deploy.prototxt'
         model_weights = '/home/caffeNutzer/face/EmotiW_VGG_S.caffemodel'
         meanFile = '/home/caffeNutzer/face/mean.binaryproto'
+        self.translator = ct.CategoryTranslator(
+            ournet_categories_file="/home/caffeNutzer/data/config/categories_faces2.txt",
+            othernet_categories_file="/home/caffeNutzer/data/config/categories_faces7.txt",
+            translation_othernet_file="/home/caffeNutzer/data/config/categories_translation_faces.txt")
 
-        # if weights is not None:
-        #     self.net = caffe.Net(network_config_file, weights, caffe.TEST)
-        # else:
-        #     self.net = caffe.Net(network_config_file, caffe.TEST)
         self.net = caffe.Net(model_def, model_weights, caffe.TEST)
-        #self.translator = ct.CategoryTranslator(ournet_categories_file="/home/caffeNutzer/data/config/categories_ournet6.txt",
-                                             #places_categories_file="/home/caffeNutzer/data/config/categories_places365.txt",
-                                             #translation_file="/home/caffeNutzer/data/config/categories_translation.txt")
-
+        # incorporate mean subtraction
         blob = caffe.proto.caffe_pb2.BlobProto()
         data = open(meanFile, 'rb').read()
         blob.ParseFromString(data)
@@ -38,8 +35,10 @@ class ImageClassifier:
         self.transformer.set_raw_scale('data', 255)
         self.transformer.set_channel_swap('data', (2,1,0))
 
+        self.action = "keep"    # can also be "skip"
+
     def classify_image(self, imagePath):
-        #image = caffe.io.load_image('/home/caffeNutzer/data/images/sea_coast.jpg')
+
         image = caffe.io.load_image(imagePath)
         transformed_image = self.transformer.preprocess('data', image)
         self.net.blobs['data'].data[...] = transformed_image
@@ -47,14 +46,17 @@ class ImageClassifier:
         output = self.net.forward()
         output_prob = output['prob'][0]
         index_max_prob = output_prob.argmax()
-        return 'onlynet', index_max_prob
-        
-        #label = self.translator.places365_to_ournet6(index_max_prob)
-        #return label, None
+
+        label = self.translator.othernet_to_ournet(index_max_prob)
+        self.action = label
+        return label, index_max_prob
 
     def load_image(self, imageName):
         im = np.array(Image.open(imageName))
         return im, None
+
+    def get_action(self):
+        return self.action
 
 if __name__ == "__main__":
     sys.path.append('home/caffeNutzer/caffe/python')
