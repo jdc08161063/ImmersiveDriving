@@ -1,33 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <script type="text/javascript" src="js/lib/jquery-3.1.1.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="js/node_modules/angular-material/angular-material.css"/>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="application/javascript" src="frameworks/howler.js-master/howler.js-master/dist/howler.js"></script>
+    <script type="application/javascript" src="js/songplayer.js"></script>
+    <script type="text/javascript" src="js/node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="js/node_modules/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="js/node_modules/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="js/node_modules/angular-material/angular-material.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/song.js"></script>
     <script type="text/javascript" src="js/songlist.js"></script>
     <script type="text/javascript" src="js/request.js"></script>
     <script type="text/javascript" src="js/application.js"></script>
     <title>Audi Smart Music Hub</title>
-  </head>
-  <body>
-    <div class="row">
-      <div class="col s6">
-        <div class="container">
-          <h2>Landscape</h2>
-          <img id="image" class="responsive-img" src="https://lh3.googleusercontent.com/-XIBDmNIb4xo/AAAAAAAAAAI/AAAAAAAAAEk/IIRqdHKj_8M/s0-c-k-no-ns/photo.jpg">
-          <input type='file' />
-        </div>
-      </div>
-      <div class="col s6">
-        <div class="container">
-          <h2>Songs</h2>
-          <div id="songlist"></div>
-        </div>
-      </div>
+</head>
+<body ng-app="ImmersiveDriving">
+<md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+        <span>Normal</span>
     </div>
-  </body>
+</md-toolbar>
+<div class="row">
+    <div class="col s6">
+        <div class="container">
+            <h2>Landscape</h2>
+            <img id="image" class="responsive-img"
+                 src="https://lh3.googleusercontent.com/-XIBDmNIb4xo/AAAAAAAAAAI/AAAAAAAAAEk/IIRqdHKj_8M/s0-c-k-no-ns/photo.jpg">
+            <input type='file'/>
+        </div>
+    </div>
+    <div class="col s6">
+        <div class="container">
+            <md-whiteframe class="md-whiteframe-2dp" flex-gt-md="25" layout layout-align="center center">
+                <div id="songlist"></div>
+            </md-whiteframe>
+        </div>
+    </div>
+</div>
+</body>
 </html>
