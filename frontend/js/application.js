@@ -15,9 +15,10 @@ function getNextImage() {
         _songs.pause();
     }
     var request = new Request();
-    request.perform(function (songs, imageName) {
+    request.perform(function (songs, imageName, label) {
         _songs = songs;
         $('#image').css('background-image', "url(images/" + imageName + ")");
+        document.getElementById("label").innerHTML = label;
         updateSongsUI();
     });
 }

@@ -9,6 +9,7 @@ classifier = None
 
 current_image_idx = 0
 
+current_label = None
 
 def song_list_for_image(image_name):
     song_list, err = classifier.classify_image(
@@ -16,6 +17,8 @@ def song_list_for_image(image_name):
     if err is not None:
         print err
         return None
+    global current_label
+    current_label = classifier.get_label()
     return [song.to_json() for song in song_list]
 
 
@@ -48,7 +51,8 @@ def get_next_image():
     songs_list = song_list_for_image(image_name)
     if songs_list is None:
         return Response(status=500)
-    js = json.dumps({"songs": songs_list, "imageFile": image_name})
+    global current_label
+    js = json.dumps({"songs": songs_list, "imageFile": image_name, "label": current_label})
     resp = Response(js, status=200, mimetype='application/json', headers=[('Access-Control-Allow-Origin', '*')])
     return resp
 

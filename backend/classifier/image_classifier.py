@@ -17,7 +17,7 @@ class ImageClassifier:
         model_weights = '/home/caffeNutzer/data/alexnet_places365.caffemodel'
         meanFile = '/home/caffeNutzer/data/places365CNN_mean.binaryproto'
 
-
+        self.label = None
         # if weights is not None:
         #     self.net = caffe.Net(network_config_file, weights, caffe.TEST)
         # else:
@@ -51,8 +51,11 @@ class ImageClassifier:
         index_max_prob = output_prob.argmax()
         print 'onlynet', index_max_prob
 
-        label = self.translator.othernet_to_ournet(index_max_prob)
-        return songs_map[label], None
+        self.label = self.translator.othernet_to_ournet(index_max_prob)
+        return songs_map[self.label], None
+
+    def get_label(self):
+        return self.label
 
     def load_image(self, imageName):
         im = np.array(Image.open(imageName))
