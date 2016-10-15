@@ -19,8 +19,7 @@ class ImagePrep():
             if filename.endswith(".jpg"):
                 im = Image.open("./" + self.images_folder + "/" + filename)
                 im = im.resize((self.new_x, self.new_y), Image.ANTIALIAS)
-                outname = filename[:-8]
-                im.save("./" + self.images_folder + "/resized/" + "{0}.jpg".format(outname))
+                im.save("./" + self.images_folder + "/resized/" + filename)
 
         # now load as np arrays
         images = list()
