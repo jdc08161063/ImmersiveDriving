@@ -61,5 +61,5 @@ class FaceClassifier:
 if __name__ == "__main__":
     sys.path.append('home/caffeNutzer/caffe/python')
     import caffe
-    ic = ImageClassifier()   
-    print 'ourlabel', ic.classify_image('/home/caffeNutzer/face/images/happy_3.jpg')
+    ic = FaceClassifier()
+    print 'ourlabel', ic.classify_image('/home/ImmersiveDriving/backend/classifier/demo_dataset/faces/happy_mild.jpg')
