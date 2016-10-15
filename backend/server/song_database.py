@@ -16,7 +16,7 @@ class Song(object):
 
 songs_map = {
     "city_street_urban": [
-        Song("Imagine Dragons", "Amsterdam", "-", "https://www.youtube.com/watch?v=TKtPXO5iEnA",
+        Song("Imagine Dragons", "Amsterdam", "-", "https://i.ytimg.com/vi/TKtPXO5iEnA/maxresdefault.jpg",
              "../backend/server/songs/cityStreetUrban/amsterdam.m4a"),
         Song("Abba", "Summer Night City", "-", "http://img.youtube.com/vi/_d5dPYHi17k/0.jpg",
              "../backend/server/songs/cityStreetUrban/summer_night_city.mp3"),
