@@ -63,4 +63,6 @@ if __name__ == "__main__":
     sys.path.append('home/caffeNutzer/caffe/python')
     import caffe
     ic = FaceClassifier()
-    print 'ourlabel', ic.classify_image('/home/caffeNutzer/ImmersiveDriving/backend/classifier/demo_dataset/faces/happy_mild.jpg')
+    print 'ourlabel0', ic.classify_image('/home/caffeNutzer/ImmersiveDriving/backend/classifier/demo_dataset/faces/happy_mild.jpg')
+    print 'ourlabel1', ic.classify_image('/home/caffeNutzer/ImmersiveDriving/backend/classifier/demo_dataset/faces/neutral.jpg')
+    print 'ourlabel2', ic.classify_image('/home/caffeNutzer/ImmersiveDriving/backend/classifier/demo_dataset/faces/disgust.jpg')
