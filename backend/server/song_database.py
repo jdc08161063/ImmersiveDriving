@@ -24,7 +24,7 @@ songs_map = {
     "desert_field_void": [],
     "forest_mountain_nature": [],
     "night_tunnel_dark": [],
-    "sea_coast_water": [Song("Movie theme", "Pirates of the Carribean", "-", "http://img.youtube.com/vi/27mB8verLK8/hqdefault.jpg",
+    "sea_coast_water": [Song("Movie theme", "Pirates of the Carribean", "-", "../backend/server/sample_song.mp3",
                              "http://www.youtube.com/watch?v=27mB8verLK8"),
                         Song("Movie theme", "Pirates of the Carribean", "-", "http://img.youtube.com/vi/27mB8verLK8/hqdefault.jpg",
                              "http://www.youtube.com/watch?v=27mB8verLK8"),

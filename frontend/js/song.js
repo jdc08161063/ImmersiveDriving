@@ -8,13 +8,17 @@ var Song = function (artist, name, album, cover, url) {
     this.audio = null;
 };
 
+
 Song.prototype.toHTML = function (index) {
-    return '<li class="collection-item avatar">' +
-        '<img src="' + this.cover + '" alt="" class="circle">' +
-        '<span class="title">' + this.name + '</span>' +
+    return '<md-list-item class="md-3-line md-long-text" layout="row" layout-padding>' +
+        '<img ng-src=="' + this.cover + '?25" alt="" class="md-avatar" flex="20" flex-offset="20">' +
+        '<div class="md-list-item-text" flex>' +
+        '<h3 class="title">' + this.name + '</h3>' +
         '<p>' + this.artist + '<br>' + this.album + '</p>' +
         '<a href="#!" class="secondary-content"></a>' +
-        '</li>';
+        '</div>' +
+        '<md-divider></md-divider>' +
+        '</md-list-item>';
 };
 
 Song.prototype.play = function () {

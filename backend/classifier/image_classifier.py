@@ -41,21 +41,18 @@ class ImageClassifier:
 
     def classify_image(self, imagePath):
         print imagePath
-        try:
-            #image = caffe.io.load_image('/home/caffeNutzer/data/images/sea_coast.jpg')
-            image = caffe.io.load_image(imagePath)
-            transformed_image = self.transformer.preprocess('data', image)
-            self.net.blobs['data'].data[...] = transformed_image
+        #image = caffe.io.load_image('/home/caffeNutzer/data/images/sea_coast.jpg')
+        image = caffe.io.load_image(imagePath)
+        transformed_image = self.transformer.preprocess('data', image)
+        self.net.blobs['data'].data[...] = transformed_image
 
-            output = self.net.forward()
-            output_prob = output['prob'][0]
-            index_max_prob = output_prob.argmax()
-            print 'onlynet', index_max_prob
+        output = self.net.forward()
+        output_prob = output['prob'][0]
+        index_max_prob = output_prob.argmax()
+        print 'onlynet', index_max_prob
 
-            label = self.translator.places365_to_ournet6(index_max_prob)
-            return songs_map[label], None
-        except:
-            return None, "internal server error"
+        label = self.translator.othernet_to_ournet(index_max_prob)
+        return songs_map[label], None
 
     def load_image(self, imageName):
         im = np.array(Image.open(imageName))

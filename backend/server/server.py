@@ -7,18 +7,21 @@ from flask import Flask
 app = Flask(__name__)
 classifier = None
 
+current_image_idx = 0
+
+
 def song_list_for_image(image_name):
     song_list, err = classifier.classify_image(
         str(os.path.realpath('.')) + '/backend/classifier/demo_dataset/resized/' + image_name)
     if err is not None:
         print err
         return None
-    return {image_name: [song.to_json() for song in song_list]}
+    return [song.to_json() for song in song_list]
 
 
 def get_image_list():
     image_list = []
-    image_dir = str(os.path.realpath('..')) + '/classifier/demo_dataset/resized'
+    image_dir = str(os.path.realpath('.')) + '/backend/classifier/demo_dataset/resized'
     for fileName in os.listdir(image_dir):
         if fileName.endswith('.jpg') or fileName.endswith('.png'):
             print fileName
@@ -36,13 +39,16 @@ def get_all_songs():
     return resp
 
 
-@app.route("/<string:image_name>")
-def get_song_for_image(image_name):
-    print image_name
-    songs_map = song_list_for_image(image_name)
-    if songs_map is None:
+@app.route("/next")
+def get_next_image():
+    files = get_image_list()
+    global current_image_idx
+    current_image_idx = (current_image_idx + 1) % len(files)
+    image_name = files[current_image_idx]
+    songs_list = song_list_for_image(image_name)
+    if songs_list is None:
         return Response(status=500)
-    js = json.dumps(songs_map)
+    js = json.dumps({"songs": songs_list, "imageFile": image_name})
     resp = Response(js, status=200, mimetype='application/json', headers=[('Access-Control-Allow-Origin', '*')])
     return resp
 

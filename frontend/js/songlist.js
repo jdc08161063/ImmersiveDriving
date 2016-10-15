@@ -1,13 +1,15 @@
 var Songlist = function(songs) {
   this.songs = songs;
-  this.songs[0].play();
+  if (songs.length != 0) {
+    this.songs[0].play();
+  }
 };
 
 Songlist.prototype.toHTML = function () {
   var songsHtml = this.songs.reduce(function(acc, song, index) {
     return acc + song.toHTML(index);
   }, '');
-  return '<ul class="collection">' + songsHtml + '</ul>';
+  return '<md-list flex="100" layout="column" class="song-list" layout-wrap>' + songsHtml + '</md-list>';
 };
 
 Songlist.prototype.play = function (index) {

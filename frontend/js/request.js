@@ -1,24 +1,23 @@
 var url = "http://localhost:5000";
 
-var Request = function (imageName) {
-    this.imageName = imageName;
+var Request = function () {
 };
 
 Request.prototype.perform = function (callback) {
-    console.log(url + "/" + this.imageName);
-    im = this.imageName;
+    console.log(url + "/next");
     $.ajax({
-        url: url + "/" + this.imageName,
+        url: url + "/next",
         type: "GET",
         data: '',
         success: function (data) {
-            songsJSON = data[im];
+            imageFile = data["imageFile"];
+            songsJSON = data["songs"];
             songs = songsJSON.map(function (songString) {
                 songObj = JSON.parse(songString);
                 return new Song(songObj.artist, songObj.name, songObj.album, songObj.cover, songObj.url);
             });
             console.log(songs);
-            callback(new Songlist(songs));
+            callback(new Songlist(songs), imageFile);
         }
     });
 };
