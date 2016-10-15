@@ -46,7 +46,7 @@ class FaceClassifier:
         output = self.net.forward()
         output_prob = output['prob'][0]
         index_max_prob = output_prob.argmax()
-        print(index_max_prob)
+        print("maxprob", index_max_prob)
         label = self.translator.othernet_to_ournet(index_max_prob)
         self.action = label
         print("facenetlabel", label)
