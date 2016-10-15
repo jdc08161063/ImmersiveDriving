@@ -24,19 +24,27 @@
     <title>Audi Smart Music Hub</title>
 </head>
 <body ng-app="ImmersiveDriving">
-<md-toolbar layout="row" class="md-hue-2">
+<md-toolbar layout="row" id="toolbar" class="md-hue-2">
     <div class="md-toolbar-tools">
     </div>
 </md-toolbar>
 
 <div layout="column" class="container">
 
-    <div id="image" layout="row" flex="75">
+    <div id="image" layout="row" flex="75" layout-align="center start">
+        <md-card id="labelcard" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+            <md-card-title>
+                <md-card-title-text layout-align="center center" layout="row">
+                    <span id="label" class="md-headline">Label</span>
+                </md-card-title-text>
+            </md-card-title>
+            </md-card>
     </div>
 
-    <md-content id="songlist" layout="row" layout-align="center start" flex="25">
-    </md-content>
-    <input type='button' onclick="getNextImage()" value="NEXT"/>
+    <md-whiteframe-17dp id="songlist" layout="row" layout-align="center start" flex="25">
+    </md-whiteframe-17dp>
+    <div layout="row" layout-align="center center" id="buttonwrapper">
+    <md-button class="md-raised" onclick="getNextImage()" id="button">NEXT</md-button></div>
 
 </div>
 

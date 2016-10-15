@@ -5,6 +5,26 @@
     background-size: cover;
 }
 
+#labelcard {
+    width: 30%;
+}
+
+#label {
+    color: #808080;
+}
+
+#buttonwrapper {
+    width: 100%;
+}
+
+#button {
+    width: 50%;
+}
+
+#toolbar {
+    box-shadow: 3px 3px 1px rgba(80,80,80,0.7);
+}
+
 .song-list {
     width: 100%;
 }
@@ -17,4 +37,13 @@
 .container {
     width: 100%;
     height: 100%;
+}
+
+.circle {
+    margin-top: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 40px;
+    height: 40px;
+    vertical-align: center;
 }
