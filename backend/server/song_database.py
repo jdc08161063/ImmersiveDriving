@@ -21,7 +21,7 @@ songs_map = {
         Song("Abba", "Summer Night City", "-", "http://img.youtube.com/vi/_d5dPYHi17k/0.jpg",
              "../backend/server/songs/cityStreetUrban/summer_night_city.mp3"),
     ],
-    "desert_field_void": [
+    "field_plains": [
         Song("Lukas Graham", "7 Years", "-", "http://img.youtube.com/vi/LHCob76kigA/0.jpg",
              "../backend/server/songs/desertFieldVoid/7years.m4a"),
         Song("Olly Murs", "Right Place Right Time", "-", "http://img.youtube.com/vi/8lxaNO5V06k/0.jpg",
