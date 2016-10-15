@@ -18,13 +18,13 @@ Song.prototype.toHTML = function (index) {
 };
 
 Song.prototype.play = function () {
-    this.audio = new Audio(this.url);
-    this.audio.play();
+    this.audio = new SongPlayer(this.url);
+    this.audio.fadeIn();
     this.playing = true;
 };
 
 Song.prototype.pause = function () {
     this.playing = false;
     if (this.audio)
-        this.audio.pause();
+        this.audio.fadeOut();
 };
