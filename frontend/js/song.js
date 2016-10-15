@@ -18,7 +18,7 @@ Song.prototype.toHTML = function (index) {
 };
 
 Song.prototype.play = function () {
-    this.audio = new Audio(this.url);
+    this.audio = new SongPlayer(this.url);
     this.audio.play();
     this.playing = true;
 };
