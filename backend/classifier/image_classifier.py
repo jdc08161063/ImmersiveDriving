@@ -1,12 +1,12 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import sys
 #sys.path.append('home/caffeNutzer/caffe/python')
 #import caffe
 import os
 from PIL import Image
 import caffe
-import CategoryTranslator as ct
+import category_translator as ct
+from backend.server.song_database import songs_map
 
 class ImageClassifier:
     def __init__(self): #, network_config_file=None, weights=None):
@@ -16,6 +16,7 @@ class ImageClassifier:
         model_def = '/home/caffeNutzer/data/deploy_alexnet_places365.prototxt'
         model_weights = '/home/caffeNutzer/data/alexnet_places365.caffemodel'
         meanFile = '/home/caffeNutzer/data/places365CNN_mean.binaryproto'
+
 
         # if weights is not None:
         #     self.net = caffe.Net(network_config_file, weights, caffe.TEST)
@@ -39,18 +40,22 @@ class ImageClassifier:
         self.transformer.set_channel_swap('data', (2,1,0))
 
     def classify_image(self, imagePath):
-        #image = caffe.io.load_image('/home/caffeNutzer/data/images/sea_coast.jpg')
-        image = caffe.io.load_image(imagePath)
-        transformed_image = self.transformer.preprocess('data', image)
-        self.net.blobs['data'].data[...] = transformed_image
+        print imagePath
+        try:
+            #image = caffe.io.load_image('/home/caffeNutzer/data/images/sea_coast.jpg')
+            image = caffe.io.load_image(imagePath)
+            transformed_image = self.transformer.preprocess('data', image)
+            self.net.blobs['data'].data[...] = transformed_image
 
-        output = self.net.forward()
-        output_prob = output['prob'][0]
-        index_max_prob = output_prob.argmax()
-        print 'onlynet', index_max_prob
-        
-        label = self.translator.places365_to_ournet6(index_max_prob)
-        return label, None
+            output = self.net.forward()
+            output_prob = output['prob'][0]
+            index_max_prob = output_prob.argmax()
+            print 'onlynet', index_max_prob
+
+            label = self.translator.places365_to_ournet6(index_max_prob)
+            return songs_map[label], None
+        except:
+            return None, "internal server error"
 
     def load_image(self, imageName):
         im = np.array(Image.open(imageName))

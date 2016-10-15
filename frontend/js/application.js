@@ -1,4 +1,5 @@
 var _songs = null;
+var _current_image = null;
 
 function updateSongsUI() {
   var songlist = document.getElementById("songlist");
@@ -16,14 +17,13 @@ function setSongs(songs) {
   updateSongsUI();
 }
 
-function uploadImage(file) {
-  var request = new Request(file.name);
+function uploadImage(e) {
+  var request = new Request(_current_image);
   request.perform(function(songs) {
     _songs = songs;
     updateSongsUI();
   });
-  var imageView = document.getElementById("image");
-  imageView.src = image.target.result;
+   $('#image').attr('src', e.target.result);
 }
 
 var imageLink = "https://lh3.googleusercontent.com/-XIBDmNIb4xo/AAAAAAAAAAI/AAAAAAAAAEk/IIRqdHKj_8M/s0-c-k-no-ns/photo.jpg";
@@ -38,6 +38,7 @@ $(document).ready(function() {
 $(function () {
         $(":file").change(function () {
             if (this.files && this.files[0]) {
+                _current_image = this.files[0].name;
                 var reader = new FileReader();
                 reader.onload = uploadImage;
                 reader.readAsDataURL(this.files[0]);
