@@ -11,6 +11,9 @@ function play(index) {
 }
 
 function getNextImage() {
+    if (_songs != null) {
+        _songs.pause();
+    }
     var request = new Request();
     request.perform(function (songs, imageName) {
         _songs = songs;

@@ -8,9 +8,9 @@ var SongPlayer = function (src) {
 
 SongPlayer.prototype.fadeIn = function() {
     this.id = this.sound.play();
-    this.sound.fade(0.1,1,this.sound.duration()/2,this.id);
+    this.sound.fade(0.1,1,this.sound.duration()/100,this.id);
 };
 
 SongPlayer.prototype.fadeOut = function() {
-    this.sound.fade(0.9,0,this.sound.duration()/2,this.id);
+    this.sound.fade(0.9,0,this.sound.duration()/100,this.id);
 };

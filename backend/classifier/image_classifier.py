@@ -23,9 +23,9 @@ class ImageClassifier:
         # else:
         #     self.net = caffe.Net(network_config_file, caffe.TEST)
         self.net = caffe.Net(model_def, model_weights, caffe.TEST)
-        self.translator = ct.CategoryTranslator(ournet_categories_file="/home/caffeNutzer/ImmersiveDriving/backend/classifier/config/categories_ournet6.txt",
-                                                othernet_categories_file="/home/caffeNutzer/ImmersiveDriving/backend/classifier/config/categories_places365.txt",
-                                                translation_othernet_file="/home/caffeNutzer/ImmersiveDriving/backend/classifier/config/categories_translation.txt")
+        self.translator = ct.CategoryTranslator(ournet_categories_file="/workspace/backend/classifier/config/categories_ournet6.txt",
+                                                othernet_categories_file="/workspace/backend/classifier/config/categories_places365.txt",
+                                                translation_othernet_file="/workspace/backend/classifier/config/categories_translation.txt")
 
         blob = caffe.proto.caffe_pb2.BlobProto()
         data = open(meanFile, 'rb').read()

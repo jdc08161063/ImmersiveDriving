@@ -13,12 +13,16 @@ Songlist.prototype.toHTML = function () {
 };
 
 Songlist.prototype.play = function (index) {
-  if (this.songs[index].playing) {
-    this.songs[index].pause();
-  } else {
     for (var i in this.songs) {
       this.songs[i].pause();
     }
     this.songs[index].play();
-  }
+};
+
+Songlist.prototype.pause = function () {
+    songs.forEach(function(song) {
+        if (song.playing) {
+            song.pause()
+        }
+    })
 };
