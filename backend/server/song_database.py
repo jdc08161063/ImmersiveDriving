@@ -14,21 +14,19 @@ class Song(object):
         return json.dumps(self.__dict__)
 
 songs_map = {
-    "city_street_urban": [Song("Bomfunk MC", "Freestyler", "-", "http://img.youtube.com/vi/ymNFyxvIdaM/hqdefault.jpg",
-                               "http://www.youtube.com/watch?v=ymNFyxvldaM"),
-                          Song("Eminem", "Lose yourself", "Lose yourself", "http://img.youtube.com/vi/eRhEcKHU5LY/hqdefault.jpg",
-                               "http://www.youtube.com/watch?v=eRhEcKHU5LY"),
-                          Song("Linkin Park", "Numb", "Meteora", "http://img.youtube.com/vi/kXYiU_JCYtU/hqdefault.jpg",
-                               "http://www.youtube.com/watch?v=kXYiU_JCYtU"),
+    "city_street_urban": [Song("Abba", "Summer Night City", "-", "http://img.youtube.com/vi/_d5dPYHi17k/0.jpg",
+                               "../backend/server/songs/cityStreetUrban/summer_night_city.mp3"),
                           ],
     "desert_field_void": [],
-    "forest_mountain_nature": [],
-    "night_tunnel_dark": [],
+    "forest_mountain_nature": [Song("David Garrett", "Human Nature", "-", "http://img.youtube.com/vi/4RTP1JWn6ZM/0.jpg",
+                               "../backend/server/songs/forestMountainNature/human_nature.mp3")],
+    "night_tunnel_dark": [Song("Adele", "Love in the Dark", "-", "http://img.youtube.com/vi/97hZ4bxTqZc/0.jpg",
+                               "../backend/server/songs/nightTunnelDark/love_in_the_dark.mp3")],
     "sea_coast_water": [Song("Movie theme", "Pirates of the Carribean", "-", "http://img.youtube.com/vi/27mB8verLK8/hqdefault.jpg",
-                             "../backend/server/songs/sample_song.mp3"),
-                        Song("Movie theme", "Pirates of the Carribean", "-", "http://img.youtube.com/vi/27mB8verLK8/hqdefault.jpg",
-                             "../backend/server/songs/sample_song.mp3"),
+                             "../backend/server/songs/sample_song.mp3")
                         ],
-    "surprise_unknown": [],
-    "road_highway_boredom": [],
+    "surprise_unknown": [Song("-", "Ans Ende Der Welt", "-", "",
+                             "../backend/server/songs/surprise/ans_ende_der_welt.mp3")],
+    "road_highway_boredom": [Song("Hermes House Band", "Country Roads", "-", "http://img.youtube.com/vi/ZVz_IJoyO6Y/0.jpg",
+                             "../backend/server/songs/roadHighway/country_roads.mp3"],
 }
