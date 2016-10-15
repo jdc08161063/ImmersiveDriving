@@ -17,9 +17,9 @@ class FaceClassifier:
         model_weights = '/home/caffeNutzer/face/EmotiW_VGG_S.caffemodel'
         meanFile = '/home/caffeNutzer/face/mean.binaryproto'
         self.translator = ct.CategoryTranslator(
-            ournet_categories_file="/home/ImmersiveDriving/backend/classifier/config/categories_faces2.txt",
-            othernet_categories_file="/home/ImmersiveDriving/backend/classifier/config/categories_faces7.txt",
-            translation_othernet_file="/home/ImmersiveDriving/backend/classifier/config/categories_translation_faces.txt")
+            ournet_categories_file="/home/caffeNutzer/ImmersiveDriving/backend/classifier/config/categories_faces2.txt",
+            othernet_categories_file="/home/caffeNutzer/ImmersiveDriving/backend/classifier/config/categories_faces7.txt",
+            translation_othernet_file="/home/caffeNutzer/ImmersiveDriving/backend/classifier/config/categories_translation_faces.txt")
 
         self.net = caffe.Net(model_def, model_weights, caffe.TEST)
         # incorporate mean subtraction
@@ -62,4 +62,4 @@ if __name__ == "__main__":
     sys.path.append('home/caffeNutzer/caffe/python')
     import caffe
     ic = FaceClassifier()
-    print 'ourlabel', ic.classify_image('/home/ImmersiveDriving/backend/classifier/demo_dataset/faces/happy_mild.jpg')
+    print 'ourlabel', ic.classify_image('/home/caffeNutzer/ImmersiveDriving/backend/classifier/demo_dataset/faces/happy_mild.jpg')
