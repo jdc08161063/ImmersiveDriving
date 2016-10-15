@@ -5,10 +5,9 @@ from flask import Response
 from flask import Flask
 
 app = Flask(__name__)
-
+classifier = None
 
 def song_list_for_image(image_name):
-    classifier = ImageClassifier()
     song_list, err = classifier.classify_image(
         str(os.path.realpath('.')) + '/backend/classifier/demo_dataset/resized/' + image_name)
     if err is not None:
@@ -49,4 +48,5 @@ def get_song_for_image(image_name):
 
 
 if __name__ == "__main__":
+    classifier = ImageClassifier()
     app.run()
