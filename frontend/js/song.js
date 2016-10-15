@@ -10,8 +10,8 @@ var Song = function (artist, name, album, cover, url) {
 
 
 Song.prototype.toHTML = function (index) {
-    return '<md-list-item class="md-3-line md-long-text" layout="row" layout-padding>' +
-        '<img ng-src=="' + this.cover + '?25" alt="" class="md-avatar" flex="20" flex-offset="20">' +
+    return '<md-list-item class="md-3-line md-long-text avatar" layout="row" layout-padding layout-align="center center">' +
+        '<img src="' + this.cover + '" alt="" class="circle">' +
         '<div class="md-list-item-text" flex>' +
         '<h3 class="title">' + this.name + '</h3>' +
         '<p>' + this.artist + '<br>' + this.album + '</p>' +

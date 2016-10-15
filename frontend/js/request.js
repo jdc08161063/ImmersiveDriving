@@ -12,12 +12,13 @@ Request.prototype.perform = function (callback) {
         success: function (data) {
             imageFile = data["imageFile"];
             songsJSON = data["songs"];
+            label = data["label"];
             songs = songsJSON.map(function (songString) {
                 songObj = JSON.parse(songString);
                 return new Song(songObj.artist, songObj.name, songObj.album, songObj.cover, songObj.url);
             });
             console.log(songs);
-            callback(new Songlist(songs), imageFile);
+            callback(new Songlist(songs), imageFile, label);
         }
     });
 };

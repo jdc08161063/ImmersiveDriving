@@ -35,3 +35,5 @@ class ImagePrep():
         pass
 
 
+if __name__ == "__main__":
+    ip = ImagePrep("./demo_dataset")
