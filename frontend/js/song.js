@@ -8,7 +8,6 @@ var Song = function (artist, name, album, cover, url) {
     this.audio = null;
 };
 
-
 Song.prototype.toHTML = function (index) {
     return '<md-list-item class="md-3-line md-long-text avatar" layout="row" layout-padding layout-align="center center">' +
         '<img src="' + this.cover + '" alt="" class="circle">' +
