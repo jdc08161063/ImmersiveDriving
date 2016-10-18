@@ -1,4 +1,5 @@
 import os
+
 from backend.classifier.image_classifier import ImageClassifier
 from flask import json
 from flask import Response
@@ -6,14 +7,13 @@ from flask import Flask
 
 app = Flask(__name__)
 classifier = None
-
-current_image_idx = 3
-
+current_image_idx = 0
 current_label = None
+
 
 def song_list_for_image(image_name):
     song_list, err = classifier.classify_image(
-        str(os.path.realpath('.')) + '/backend/classifier/demo_dataset/resized/' + image_name)
+        os.path.join(os.path.dirname(__file__), '../classifier/demo_dataset/resized/' + image_name))
     if err is not None:
         print err
         return None
@@ -24,7 +24,7 @@ def song_list_for_image(image_name):
 
 def get_image_list():
     image_list = []
-    image_dir = str(os.path.realpath('.')) + '/backend/classifier/demo_dataset/resized'
+    image_dir = os.path.join(os.path.dirname(__file__), '../classifier/demo_dataset/resized')
     for fileName in os.listdir(image_dir):
         if fileName.endswith('.jpg') or fileName.endswith('.png'):
             print fileName
@@ -59,4 +59,4 @@ def get_next_image():
 
 if __name__ == "__main__":
     classifier = ImageClassifier()
-    app.run()
+    app.run(host='0.0.0.0')
